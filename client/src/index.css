@@ -11,3 +11,67 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.menu{
+  padding-top: 10px;
+}
+.active{
+  color: #00aaff;
+}
+.menu span{
+  padding: 10px;
+}
+
+.menu a {
+  text-decoration: none;
+}
+
+.container{
+  margin: 0 10%;
+}
+
+.signup-title, .login-title {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.message {
+  text-align: center;
+}
+.signup-form, .login-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.signup-form input, .login-form input {
+  display: block;
+  margin-bottom: 15px;
+  padding: 7px 10px;
+  outline: none;
+  border: 1px solid #000;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.button {
+  width: 217px;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #00aaff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:active {
+  transform: scale(101%);
+}
+
+.message{
+  margin-bottom: 5px;
+}
+
+
