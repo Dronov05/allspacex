@@ -87,7 +87,8 @@ export default function Dashboard({server_host}) {
         setDisabledInput(true)
 
         if (data.ok) {
-            setMessage('Имя пользователя изменно')
+            setTimeout(() => {setMessage('Имя пользователя изменно')},3000)
+            // setMessage('Имя пользователя изменно')
         } else {
             setMessage('Ошибка сохранения')
         }
