@@ -13,7 +13,7 @@ async function save(user){
         email: user.email,
         password: user.password,
         username: username,
-        role: 'admin'
+        role: 'user'
     })
 }
 
