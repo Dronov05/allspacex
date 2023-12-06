@@ -14,8 +14,8 @@ export default function Login({server_host}) {
             setMessage('Заполните все поля')
         }
 
-        const  res = await fetch('https://api.allspacex.ru/users/login', {
-        // const  res = await fetch( server_host +'/users/login', {
+        // const  res = await fetch('https://api.allspacex.ru/users/login', {
+        const  res = await fetch( server_host +'/users/login', {
             method: 'post',
             credentials: 'include',
             body: JSON.stringify(user),
