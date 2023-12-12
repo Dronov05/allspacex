@@ -9,12 +9,13 @@ async function save(user){
 
     const username = 'user' + new Date().getTime()
 
-    await collection.create({
+    const result =  await collection.create({
         email: user.email,
         password: user.password,
         username: username,
         role: 'user'
     })
+    return result
 }
 
 async function getAllUsers() {
@@ -52,5 +53,11 @@ async function updateUser (user) {
     return doc
 }
 
+async function getUserByEmail(email) {
+    await dbConnect()
+    const collection = mongoose.model('users')
+    const user = await collection.findOne({email: email})
+    return user
+}
 
-module.exports = {save, getAllUsers, getUserByEmailAndPassword, getUserById, updateUser}
+module.exports = {save, getAllUsers, getUserByEmailAndPassword, getUserById, updateUser, getUserByEmail}

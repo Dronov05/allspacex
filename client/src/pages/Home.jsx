@@ -1,5 +1,9 @@
+import {useEffect} from "react";
 
 export default function Home() {
+
+    useEffect(() => {document.title = 'Главная'}, [])
+
     return (
         <div>
                 <h1>

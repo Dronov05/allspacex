@@ -1,9 +1,10 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import emailValidator from "email-validator"
 import {useNavigate} from "react-router-dom";
 
 export default function Signup({server_host}) {
 
+    useEffect(() => {document.title = 'Регистрация'}, [])
     const [user, setUser] = useState({email: '', password: ''})
     const [repeatPassword, setRepeatPassword] = useState('')
     const [message, setMessage] = useState('')
@@ -75,6 +76,9 @@ export default function Signup({server_host}) {
                     </label>
                     <button className={'button'} type={'button'} onClick={signUpHandler} disabled={disabled}>Зарегистрироваться</button>
                 </form>
+                <div className={'login-google-oauth-wrap'}>
+                    <a className={'login-google-oauth'} href={'https://api.allspacex.ru/oauth/google'}>Войти через Google</a>
+                </div>
 
         </div>
     )
