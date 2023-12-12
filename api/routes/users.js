@@ -64,6 +64,7 @@ router.get('/logout', async (req, res) => {
     res.redirect(domain)
 })
 
+
 router.post('/check/auth', async (req, res) => {
     if (!req.session.user) {
         res.json({ok: false}).end()
