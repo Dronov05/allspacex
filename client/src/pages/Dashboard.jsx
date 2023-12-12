@@ -105,7 +105,6 @@ export default function Dashboard({server_host}) {
             <h1>
                 Личный кабинет
             </h1>
-            <div>{message}</div>
             <form className={'dashboard-form'}>
                 <label>Username:
                     <input className={disabledInput === false ? 'dashboard-form__input_disabled-false' : 'dashboard-form__input_disabled-true'}
@@ -117,6 +116,7 @@ export default function Dashboard({server_host}) {
                 <button onClick={changeDisabledInput} disabled={disabled}>Изменить</button>
                 <button onClick={save} disabled={disabled}>Сохранить</button>
             </form>
+            <div>{message}</div>
         </div>
     )
 }
