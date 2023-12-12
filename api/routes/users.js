@@ -55,8 +55,8 @@ router.post('/login', async (req, res) => {
 
 router.get('/logout', async (req, res) => {
 
-    // const domain = process.env.NODE_ENV === 'development' ?  process.env.DEV_HOST : process.env.PROD_HOST // Для удалённого сервера
-    const domain = process.env.NODE_ENV === 'development' ?   process.env.PROD_HOST : process.env.DEV_HOST // Для локального сервера
+    const domain = process.env.NODE_ENV === 'development' ?  process.env.DEV_HOST : process.env.PROD_HOST // Для удалённого сервера
+    // const domain = process.env.NODE_ENV === 'development' ?   process.env.PROD_HOST : process.env.DEV_HOST // Для локального сервера
 
     req.session.destroy()
     res.clearCookie('connect.sid', {path: "/"})
