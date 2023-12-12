@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 
 export default function Admin({server_host}) {
 
+    useEffect(() => {document.title = 'Админ панель'}, [])
     const [users, setUsers] = useState([])
 
     useEffect(loadUsers, [])

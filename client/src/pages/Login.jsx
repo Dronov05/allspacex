@@ -1,8 +1,9 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
 export default function Login({server_host}) {
 
+    useEffect(() => {document.title = 'Вход'}, [])
     const [user, setUser] = useState({email: '', password: ''})
     const [message, setMessage] = useState('')
 
@@ -55,6 +56,9 @@ export default function Login({server_host}) {
                 </label>
                 <button className={'button'} type={'button'} onClick={login}>Войти</button>
             </form>
+            <div className={'login-google-oauth-wrap'}>
+                <a className={'login-google-oauth'} href={'https://api.allspacex.ru/oauth/google'}>Войти через Google</a>
+            </div>
         </div>
     )
 }

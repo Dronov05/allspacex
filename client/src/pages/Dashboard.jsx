@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 
 export default function Dashboard({server_host}) {
 
+    useEffect(() => {document.title = 'Личный кабинет'}, [])
     const [loading, setLoading] = useState(true)
     const [needAuth, setNeedAuth] = useState(false)
     const [user, setUser] = useState({username: ''})
