@@ -48,7 +48,7 @@ router.get('/google/redirect', async (req, res) => {
     } else {
         const newUser = new User({
             email: user.email,
-            password: btoa(new Date()).slice(0, 12)
+            password: btoa(new Date())
             }
         )
 
