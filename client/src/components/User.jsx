@@ -8,6 +8,5 @@ export default function User({user, server_host}) {
                 <div>{user.username}</div>
             </div>
         </NavLink>
-
     )
 }
