@@ -106,13 +106,42 @@ export default function Dashboard({server_host}) {
                 Личный кабинет
             </h1>
             <form className={'dashboard-form'}>
-                <label>Username:
-                    <input className={disabledInput === false ? 'dashboard-form__input_disabled-false' : 'dashboard-form__input_disabled-true'}
-                           type={'text'}
-                           value={user.username}
+                <div className={'dashboard-form__label-wrap'}>
+                    <label htmlFor={'username'}>Username:</label>
+                        <input className={disabledInput === false ? 'dashboard-form__input_disabled-false' : 'dashboard-form__input_disabled-true'}
+                               type={'text'}
+                               value={user.username}
+                               disabled={disabledInput}
+                               id={'username'}
+                               onChange={e => changeUser('username', e.target.value)} />
+                </div>
+                <div className={'dashboard-form__label-wrap'}>
+                    <label htmlFor={'name'}>Имя:</label>
+                        <input className={disabledInput === false ? 'dashboard-form__input_disabled-false' : 'dashboard-form__input_disabled-true'}
+                               type={'text'}
+                               value={user.name}
+                               disabled={disabledInput}
+                               id={'name'}
+                               onChange={e => changeUser('name', e.target.value)} />
+                </div>
+                <div className={'dashboard-form__label-wrap'}>
+                    <label htmlFor={'birthday'}>Дата рождения</label>
+                        <input className={disabledInput === false ? 'dashboard-form__input_disabled-false' : 'dashboard-form__input_disabled-true'}
+                               type={'date'}
+                               value={user.birthday}
+                               disabled={disabledInput}
+                               id={'birthday'}
+                               onChange={e => changeUser('birthday', e.target.value)} />
+                </div>
+                <div className={'dashboard-form__label-wrap'}>
+                    <label htmlFor={'about'}>О себе</label>
+                    <textarea className={disabledInput === false ? 'dashboard-form__input_disabled-false' : 'dashboard-form__input_disabled-true'}
+                           value={user.about}
                            disabled={disabledInput}
-                           onChange={e => changeUser('username', e.target.value)} />
-                </label>
+                           id={'about'}
+                           onChange={e => changeUser('about', e.target.value)} />
+                </div>
+
                 <button onClick={changeDisabledInput} disabled={disabled}>Изменить</button>
                 <button onClick={save} disabled={disabled}>Сохранить</button>
             </form>

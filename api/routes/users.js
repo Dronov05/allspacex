@@ -1,10 +1,34 @@
+require('dotenv').config()
 const express = require('express')
-const {save, getAllUsers, getUserByEmailAndPassword, getUserById, updateUser} = require("../services/users.service");
+const {save, getAllUsers, getUserByEmailAndPassword, getUserById, updateUser, getUsersByQuery} = require("../services/users.service");
 const router = express.Router()
 
 
 router.get('/', (req, res) => {
     res.json({ok: true, users: 'Я корневой роут users'})
+})
+
+router.get('/search', async (req, res) => {
+
+    const query = req.query
+    const users = await getUsersByQuery({query})
+
+    res.json({ok: true, users})
+})
+
+router.get('/id/:id', async (req, res) => {
+
+    let user
+    try {
+        const _id = req.session.user._id
+        const me = await getUserById(_id)
+        const isAdmin = me.role === 'admin'
+        user = await getUserById(req.params.id, isAdmin)
+    } catch (e) {
+        user = await getUserById(req.params.id)
+    }
+
+    res.json({ok: true, user: user})
 })
 
 router.get('/me', async (req, res) => {
@@ -55,8 +79,8 @@ router.post('/login', async (req, res) => {
 
 router.get('/logout', async (req, res) => {
 
-    const domain = process.env.NODE_ENV === 'development' ?  process.env.DEV_HOST : process.env.PROD_HOST // Для удалённого сервера
-    // const domain = process.env.NODE_ENV === 'development' ?   process.env.PROD_HOST : process.env.DEV_HOST // Для локального сервера
+    // const domain = process.env.NODE_ENV === 'development' ?  process.env.DEV_HOST : process.env.PROD_HOST // Для удалённого сервера
+    const domain = process.env.NODE_ENV === 'development' ?   process.env.PROD_HOST : process.env.DEV_HOST // Для локального сервера
 
     req.session.destroy()
     res.clearCookie('connect.sid', {path: "/"})

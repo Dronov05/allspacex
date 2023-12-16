@@ -6,6 +6,7 @@ import Layout from "./components/Layout";
 import Users from "./pages/Users";
 import Dashboard from "./pages/Dashboard";
 import Admin from "./pages/Admin";
+import UserPage from "./pages/UserPage";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
             <Route path='/login' element={<Login server_host={server_host} />} />
             <Route path='/signup' element={<Signup server_host={server_host} />} />
             <Route path='/users' element={<Users server_host={server_host} />} />
+            <Route path='/users/:id' element={<UserPage server_host={server_host} />} />
             <Route path='/dashboard' element={<Dashboard server_host={server_host} />} />
             <Route path='/admin' element={<Admin server_host={server_host} />} />
         </Route>

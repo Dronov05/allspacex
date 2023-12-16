@@ -74,11 +74,21 @@ code {
   margin-bottom: 5px;
 }
 
+.dashboard-form{
+  width: 225px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-form__label-wrap{
+  display: flex;
+
+}
+
 .dashboard-form input{
   padding: 5px;
   font-size: 16px;
   font-weight: bold;
-  /*border: none;*/
   border-radius: 5px;
   outline: none;
 }
@@ -105,22 +115,6 @@ code {
   align-items: center;
 }
 
-/*.login-google-oauth{*/
-/*  width: 217px;*/
-/*  padding: 10px 15px;*/
-/*  font-size: 16px;*/
-/*  font-weight: bold;*/
-/*  background-color: #00aaff;*/
-/*  color: #fff;*/
-/*  border: none;*/
-/*  border-radius: 5px;*/
-/*  cursor: pointer;*/
-/*  text-decoration: none;*/
-/*  display: block;*/
-/*  text-align: center;*/
-/*  margin: 0 auto;*/
-/*}*/
-
 .login-google-oauth{
   color: black;
   text-align: center;
@@ -131,4 +125,18 @@ code {
   border-bottom: 1px solid black;
 }
 
+.user-card{
+  margin-bottom: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+}
 
+.user-link {
+  text-decoration: none;
+  color: #00aaff;
+}
+
+.search-block {
+  margin-bottom: 10px;
+}

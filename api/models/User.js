@@ -17,6 +17,15 @@ const schema = new Schema({
     role: {
         type: String,
         default: 'user'
+    },
+    birthday: {
+        type: Date
+    },
+    name: {
+        type: String
+    },
+    about: {
+        type: String,
     }
 }, {autoCreate: true})
 

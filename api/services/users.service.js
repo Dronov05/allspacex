@@ -35,10 +35,16 @@ async function getUserByEmailAndPassword(user) {
     return doc
 }
 
-async function getUserById(_id) {
+async function getUserById(_id, isAdmin) {
     await dbConnect()
     const collection = mongoose.model('users')
-    const user = await collection.findOne({_id: _id})
+    let user = await collection.findOne({_id: _id})
+
+    if (isAdmin) {
+        user = await collection.findOne({_id: _id})
+    } else {
+        user = await collection.findOne({_id: _id}, {password: 0, email: 0})
+    }
     return user
 }
 
@@ -48,6 +54,9 @@ async function updateUser (user) {
     const doc = await collection.findOne({_id: user._id})
 
     doc['username'] = user.username
+    doc['name'] = user.name
+    doc['birthday'] = user.birthday
+    doc['about'] = user.about
 
     await doc.save()
     return doc
@@ -60,4 +69,25 @@ async function getUserByEmail(email) {
     return user
 }
 
-module.exports = {save, getAllUsers, getUserByEmailAndPassword, getUserById, updateUser, getUserByEmail}
+async function getUsersByQuery({query}) {
+
+    const now = new Date(Date.now())
+    let from = query.maxAge ? new Date().setFullYear(now.getFullYear() - parseInt(query.maxAge)) : new Date().setFullYear(1920)
+    let to = query.minAge ? new Date().setFullYear(now.getFullYear() - parseInt(query.minAge)) : new Date()
+
+    from = from - 1000 * 60 * 60 * 24 * 365 - 1000
+
+    await dbConnect();
+    const collection = mongoose.model('users');
+
+    const users = await collection.find({
+        $and: [
+            {about: new RegExp(decodeURI(query.about), "i")},
+            {name: new RegExp(decodeURI(query.name), "i")},
+            {birthday: {$gte: new Date(from).toISOString(), $lte: new Date(to).toISOString()}}
+        ]
+    });
+    return users
+}
+
+module.exports = {save, getAllUsers, getUserByEmailAndPassword, getUserById, updateUser, getUserByEmail, getUsersByQuery}

@@ -32,6 +32,7 @@ export default function Menu({server_host}){
     return (
         <div className={'menu'}>
             <span><NavLink to={'/'}>Главная</NavLink></span>
+            {authorised && <span><NavLink to={'/users'}>Люди</NavLink></span>}
             {!authorised && <span><NavLink to={'/login'}>Вход</NavLink></span>}
             {authorised && <span><NavLink to={'/dashboard'}>Кабинет</NavLink></span>}
             {!authorised && <span><NavLink to={'/signup'}>Регистрация</NavLink></span>}

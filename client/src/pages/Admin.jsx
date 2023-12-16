@@ -25,7 +25,7 @@ export default function Admin({server_host}) {
             <h1>
                 Админ кабинет
             </h1>
-            <div>Вы администратор</div>
+            <div>{JSON.stringify(users)}</div>
             <div>
                 <table>
                     <thead>
