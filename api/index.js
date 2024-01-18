@@ -35,6 +35,7 @@ const indexRouter = require("./routes/index")
 const usersRouter = require("./routes/users")
 const allRouter = require("./routes/all")
 const oauthRouter = require("./routes/oauth")
+const filesRouter = require("./routes/files")
 
 app.use(logger('dev'))
 app.use(express.json())
@@ -42,6 +43,7 @@ app.use("*", allRouter)
 app.use("/", indexRouter)
 app.use("/users", usersRouter)
 app.use("/oauth", oauthRouter)
+app.use("/files", filesRouter)
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

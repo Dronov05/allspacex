@@ -57,6 +57,8 @@ async function updateUser (user) {
     doc['name'] = user.name
     doc['birthday'] = user.birthday
     doc['about'] = user.about
+    doc['files'] = user.files
+    doc['avatar'] = user.avatar
 
     await doc.save()
     return doc

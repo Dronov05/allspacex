@@ -26,7 +26,9 @@ const schema = new Schema({
     },
     about: {
         type: String,
-    }
+    },
+    files: [{type: Schema.Types.ObjectId, ref: 'File'}],
+    avatar: {type: Schema.Types.ObjectId, ref: 'File'}
 }, {autoCreate: true})
 
 const User = mongoose.model('users', schema)
