@@ -25,7 +25,6 @@ export default function Admin({server_host}) {
             <h1>
                 Админ кабинет
             </h1>
-            <div>{JSON.stringify(users)}</div>
             <div>
                 <table>
                     <thead>
@@ -33,10 +32,19 @@ export default function Admin({server_host}) {
                         <th>Email</th>
                         <th>Пароль</th>
                         <th>Роль</th>
+                        <th>Управление</th>
+                        <th>Danger Zone</th>
                     </tr>
                     </thead>
                     <tbody>
-                        {users.map(user => <tr key={Math.random()}><td key={Math.random()}>{user.email}</td><td key={Math.random()}>{user.password}</td><td key={Math.random()}>{user.role}</td></tr>)}
+                        {users.map(user => <tr key={Math.random()}>
+                            <td key={Math.random()}>{user.email}</td>
+                            <td key={Math.random()}>{user.password}</td>
+                            <td key={Math.random()}>{user.role}</td>
+                            <td><button>Edit</button></td>
+                            <td><button>Delete user</button></td>
+                        </tr>)}
+
                     </tbody>
                 </table>
             </div>

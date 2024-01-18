@@ -140,3 +140,54 @@ code {
 .search-block {
   margin-bottom: 10px;
 }
+
+.dashboard__load-files {
+  margin-top: 20px;
+}
+
+.dashboard__load-files-button{
+  margin-top: 5px;
+}
+
+.photo-img {
+  width: 50%;
+  margin: 5px 0 3px 0;
+}
+
+.user-data {
+  display: flex;
+}
+
+.user-data_left {
+  width: 50%;
+}
+
+.user-data_right {
+  width: 50%;
+}
+
+.album {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.album div {
+  text-align: center;
+  height: 300px;
+  width: 30%;
+  border: 5px solid transparent;
+}
+
+.album div img {
+  width: 100%;
+  height: 550px;
+  object-fit: cover;
+
+}
+
+.photo {
+
+}
