@@ -9,4 +9,5 @@ export default function Gallery({server_host, user, file}) {
             {user.files.map(file => <Photo server_host={server_host} user={user} file={file} />)}
         </div>
     )
+
 }
