@@ -161,8 +161,7 @@ export default function CreateEditAdPage({server_host}) {
             credentials: "include",
             body: JSON.stringify({title: "Черновик " + Date.now()}),
             headers: {
-                // "Content-Type": "application/json"
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json"
             }
         }).then(res => {
             return res.json()
