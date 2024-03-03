@@ -1,6 +1,7 @@
 const dbConnect = require("./dbConnect");
 const mongoose = require("mongoose");
 const User = require('../models/User')
+const File = require('../models/File')
 
 async function save(user){
     await dbConnect()
@@ -41,9 +42,9 @@ async function getUserById(_id, isAdmin) {
     let user = await collection.findOne({_id: _id})
 
     if (isAdmin) {
-        user = await collection.findOne({_id: _id})
+        user = await collection.findOne({_id: _id}).populate({path: 'files', model: File})
     } else {
-        user = await collection.findOne({_id: _id}, {password: 0, email: 0})
+        user = await collection.findOne({_id: _id}, {password: 0, email: 0}).populate({path: 'files', model: File})
     }
     return user
 }

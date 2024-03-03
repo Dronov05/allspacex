@@ -36,6 +36,9 @@ const usersRouter = require("./routes/users")
 const allRouter = require("./routes/all")
 const oauthRouter = require("./routes/oauth")
 const filesRouter = require("./routes/files")
+const adsRouter = require("./routes/ads")
+const ordersRouter = require("./routes/orders")
+
 
 app.use(logger('dev'))
 app.use(express.json())
@@ -44,6 +47,10 @@ app.use("/", indexRouter)
 app.use("/users", usersRouter)
 app.use("/oauth", oauthRouter)
 app.use("/files", filesRouter)
+app.use("/ads", adsRouter)
+app.use("/orders", ordersRouter)
+
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

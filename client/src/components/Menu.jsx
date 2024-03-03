@@ -33,10 +33,12 @@ export default function Menu({server_host}){
         <div className={'menu'}>
             <span><NavLink to={'/'}>Главная</NavLink></span>
             {authorised && <span><NavLink to={'/users'}>Люди</NavLink></span>}
+            {authorised && <span><NavLink to={'/ads/category/all'}>Объявления</NavLink></span>}
             {!authorised && <span><NavLink to={'/login'}>Вход</NavLink></span>}
             {authorised && <span><NavLink to={'/dashboard'}>Кабинет</NavLink></span>}
             {!authorised && <span><NavLink to={'/signup'}>Регистрация</NavLink></span>}
             {role === 'admin' && <span><NavLink to={'/admin'}>Админ</NavLink></span>}
+            {role === 'admin' && <span><NavLink to={'/orders'}>Заказы</NavLink></span>}
             {authorised && <span><a href={server_host + '/users/logout'}>Выход</a></span>}
         </div>
     )

@@ -7,6 +7,10 @@ import Users from "./pages/Users";
 import Dashboard from "./pages/Dashboard";
 import Admin from "./pages/Admin";
 import UserPage from "./pages/UserPage";
+import AdsListPage from "./pages/AdsListPage";
+import AdPage from "./pages/AdPage";
+import CreateEditAdPage from "./pages/CreateEditAdPage";
+import OrdersPage from "./pages/OrdersPage";
 
 function App() {
 
@@ -23,6 +27,12 @@ function App() {
             <Route path='/users/:id' element={<UserPage server_host={server_host} />} />
             <Route path='/dashboard' element={<Dashboard server_host={server_host} />} />
             <Route path='/admin' element={<Admin server_host={server_host} />} />
+            <Route path='/ads/' element={<AdsListPage server_host={server_host} />} />
+            <Route path='/ads/category/:category' element={<AdsListPage server_host={server_host} />} />
+            <Route path='/ads/:id' element={<AdPage server_host={server_host} />} />
+            <Route path='/ads/create' element={<CreateEditAdPage server_host={server_host} />} />
+            <Route path='/ads/edit/:id' element={<CreateEditAdPage server_host={server_host} />} />
+            <Route path='/orders' element={<OrdersPage server_host={server_host} />} />
         </Route>
 
     </Routes>
