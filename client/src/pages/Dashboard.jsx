@@ -65,6 +65,7 @@ export default function Dashboard({server_host}) {
 
     async function loadAds() {
         await fetch(server_host + "/ads/my", {
+            method: 'get',
             credentials: "include"
         }).then(res => {
             return res.json()
