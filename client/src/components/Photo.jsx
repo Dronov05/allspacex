@@ -2,6 +2,7 @@ import {useState} from "react";
 
 export default function Photo({server_host, user, file}) {
 
+    {console.log(user)}
     const [disabled, setDisabled] = useState(false)
     const [result, setResult] = useState('')
 
@@ -9,7 +10,7 @@ export default function Photo({server_host, user, file}) {
         setDisabled(true)
          setResult('')
 
-         fetch(server_host + "/files/delete/id/" + file, {
+         fetch(server_host + "/files/delete/id/" + file._id, {
              method: 'post',
              credentials: "include",
          }).then(res => {
@@ -30,12 +31,10 @@ export default function Photo({server_host, user, file}) {
 
 
     return (
-        <div>
-            <img className={'photo-img'} src={server_host + "/files/id/" + file}/>
+        <div className={'photo-img'}>
+            <img src={server_host + "/files/id/" + file._id}/>
             <div>
-                <button type={'button'} disabled={disabled} onClick={deletePhoto}>Удалить</button>
-                {file === user.avatar && 'Фото профиля'}
-                {result}
+                <button type={'button'} disabled={disabled} onClick={deletePhoto}>Удалить</button> {file === user.avatar && 'Фото профиля'} {result}
             </div>
         </div>
     )

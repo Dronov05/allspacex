@@ -1,7 +1,8 @@
 import {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import axios from "axios";
 import Gallery from "../components/Gallery";
+import DashboardAd from "../components/DashboardAd";
 
 export default function Dashboard({server_host}) {
 
@@ -14,12 +15,14 @@ export default function Dashboard({server_host}) {
     const [disabledInput, setDisabledInput] = useState(true)
     const [files, setFiles] = useState([])
     const [progress, setProgress] = useState()
+    const [ads, setAds] = useState([])
 
 
     useEffect(() => {
         (async () => {
             await checkAuth()
         })()
+        loadAds()
     }, [])
 
     const navigate = useNavigate()
@@ -58,6 +61,18 @@ export default function Dashboard({server_host}) {
                 <h3>Загрузка...</h3>
             </div>
         )
+    }
+
+    function loadAds() {
+        fetch(server_host + "/ads/my", {
+            credentials: "include"
+        }).then(res => {
+            return res.json()
+        }).then(data => {
+            if (data.ok) {
+                setAds(data.ads)
+            }
+        })
     }
 
     if (needAuth) {
@@ -110,6 +125,8 @@ export default function Dashboard({server_host}) {
 
         let formData = new FormData()
         formData.append('file', files[0])
+        formData.append('type', 'user')
+        formData.append('id', user._id)
 
         axios.post(server_host + "/files/upload", formData, {
             withCredentials: true,
@@ -132,6 +149,13 @@ export default function Dashboard({server_host}) {
             <h1>
                 Личный кабинет
             </h1>
+            <div>
+                <h2>Объявления</h2>
+                <div><NavLink to={'/ads/create'}>Добавить объявление</NavLink></div>
+                <div className={'dashboard-ads'}>
+                    {ads.map(ad => <DashboardAd ad={ad} key={ad._id}/>)}
+                </div>
+            </div>
             <form className={'dashboard-form'}>
                 <div className={'dashboard-form__label-wrap'}>
                     <label htmlFor={'username'}>Username:</label>
@@ -191,8 +215,10 @@ export default function Dashboard({server_host}) {
                 </form>
                 {progress && progress + "%"}
             </div>
-            {/*{JSON.stringify(user.files)}*/}
-            {user.files &&  <Gallery server_host={server_host} user={user} />}
+            <h2>Галлерея</h2>
+            <div>
+                {user.files &&  <Gallery server_host={server_host} user={user} />}
+            </div>
             <div>{message}</div>
         </div>
     )

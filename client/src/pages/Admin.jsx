@@ -41,8 +41,8 @@ export default function Admin({server_host}) {
                             <td key={Math.random()}>{user.email}</td>
                             <td key={Math.random()}>{user.password}</td>
                             <td key={Math.random()}>{user.role}</td>
-                            <td><button>Edit</button></td>
-                            <td><button>Delete user</button></td>
+                            <td key={Math.random()}><button>Edit</button></td>
+                            <td key={Math.random()}><button>Delete user</button></td>
                         </tr>)}
 
                     </tbody>

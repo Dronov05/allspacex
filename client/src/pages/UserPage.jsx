@@ -57,7 +57,7 @@ export default function UserPage({server_host}) {
                 </div>
             </div>
             <div className={'album'}>
-                {user.files.map(file => <div className={'photo'}><img onClick={e => changeAvatar(file)} src={server_host + "/files/id/" + file} /></div>)}
+                {user.files.map(file => <div key={Math.random()} className={'photo'}><img alt={'person'} key={Math.random()} onClick={e => changeAvatar(file)} src={server_host + "/files/id/" + file} /></div>)}
             </div>
         </div>
     )

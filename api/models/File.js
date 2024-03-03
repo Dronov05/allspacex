@@ -10,6 +10,9 @@ const schema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
         ref: "User"
+    },
+    type: {
+        type: String
     }
 }, {autoCreate: true})
 

@@ -4,6 +4,7 @@ const router = express.Router()
 const fs = require('fs')
 const {getUserById, updateUser} = require("../services/users.service");
 const {saveFile, getFileById, deleteFileById} = require("../services/files.service");
+const {getAdById, updateAd} = require("../services/ads.service");
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -27,14 +28,22 @@ router.post("/upload", upload.single("file"), async (req, res) => {
         const _id = req.session.user._id
         const me = await getUserById(_id)
 
-        const uploadedFile = await saveFile("/" + req.file.path, me)
+        const uploadedFile = await saveFile("/" + req.file.path, me, req.body.type)
 
-        me['files'] = me.files ? me.files.push(uploadedFile) : [uploadedFile]
-        me['avatar'] = uploadedFile
+        switch (req.body.type) {
+            case 'user':
+                me['files'] = me.files ? me.files.push(uploadedFile) : [uploadedFile]
+                me['avatar'] = uploadedFile
+                await updateUser(me)
+                break
+            case 'ad' :
+                const ad = await getAdById(req.body.id)
+                ad.images.push(uploadedFile)
+                await updateAd({ad})
+                break
+        }
 
-        await updateUser(me)
-
-        res.status(200).end()
+        res.json({ok: true, _id: uploadedFile._id})
     } catch (e) {
         console.error(e)
         res.status(401).end()
